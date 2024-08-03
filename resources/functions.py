@@ -6,12 +6,14 @@ import re
 
 
 def subtract_months(date, months):
+    # Subtracts a specified number of months from a date
     if months <= 1:
         return datetime(date.year, date.month, 1).date()
 
     new_month = date.month - (months - 1) % 12
     new_year = date.year - (months - 1) // 12
 
+    # Adjust the year and month if subtraction crosses year boundary
     if new_month <= 0:
         new_month += 12
         new_year -= 1
@@ -20,6 +22,7 @@ def subtract_months(date, months):
 
 
 def download_image(url, img_name):
+    # Downloads an image from a URL and saves it to a local folder
     images_folder = "output/images"
     if not os.path.exists(images_folder):
         os.makedirs(images_folder)
@@ -35,10 +38,12 @@ def download_image(url, img_name):
 
 
 def count_search_phrase(text, phrase):
+    # Counts occurrences of a search phrase within a text
     words = text.lower().split()
     phrase_words = phrase.lower().split()
     count = 0
 
+    # Compare phrase with slices of text
     for i in range(len(words) - len(phrase_words) + 1):
         if words[i:i + len(phrase_words)] == phrase_words:
             count += 1
@@ -47,6 +52,7 @@ def count_search_phrase(text, phrase):
 
 
 def verify_money(text1, text2):
+    # Checks if money-related terms appear in either of two texts
     pattern = r'\$(\d+\.\d+|\d{1,3}(,\d{3})*(\.\d{2})?)|\d+\s(dollars|USD)'
     if re.search(pattern, text1) or re.search(pattern, text2):
         return True
@@ -55,6 +61,7 @@ def verify_money(text1, text2):
 
 
 def excel_file(data):
+    # Creates an Excel file from a list of dictionaries containing result data
     workbook = openpyxl.Workbook()
     sheet = workbook.active
 
@@ -77,4 +84,3 @@ def excel_file(data):
 
     workbook.save("output/result.xlsx")
     print("Excel file created.")
-
