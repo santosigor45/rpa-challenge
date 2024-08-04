@@ -41,7 +41,7 @@ Ensure that the `Variables` and `Xpaths` modules are correctly configured with t
 	rcc run
 	```
 2. **Output**
--   Images downloaded from the articles are saved in the `output/images` directory.
+-   Images downloaded from the articles are saved in the `output` directory.
 -   The results are saved in an Excel file `output/result.xlsx`.
 
 ## Customization
