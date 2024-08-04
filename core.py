@@ -89,8 +89,8 @@ class Scrapping:
                     "date": str(news_date),
                     "description": news_description,
                     "img_name": img_name,
-                    "search_phrases_in_title": count_search_phrase(news_title, Variables.SEARCH_TEXT),
-                    "search_phrases_in_description": count_search_phrase(news_description, Variables.SEARCH_TEXT),
+                    "search_phrases_in_title": count_search_phrase(news_title, Variables.SEARCH_PHRASE),
+                    "search_phrases_in_description": count_search_phrase(news_description, Variables.SEARCH_PHRASE),
                     "contains_money": verify_money(news_title, news_description)
                 }
 
@@ -111,7 +111,7 @@ class Scrapping:
     def run(self):
         # Main method to execute the full scraping process
         self.open_url(Variables.URL)
-        self.search(Variables.SEARCH_TEXT)
+        self.search(Variables.SEARCH_PHRASE)
         self.select_categories(Variables.CATEGORIES)
         self.sort_results()
         self.retrieve_results()
