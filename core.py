@@ -3,7 +3,7 @@ from resources import (Variables, Xpaths, subtract_months, download_image, count
 from RPA.Browser.Selenium import Selenium, ElementNotFound
 from datetime import datetime
 from time import sleep
-import shutil
+import glob
 import os
 
 
@@ -15,13 +15,11 @@ class Scrapping:
         self.start_date = subtract_months(self.end_date, Variables.MONTHS)
         self.results = []
 
-        # Clean up previous output files and directories
-        for path in ["output/images", "output/result.xlsx"]:
-            if os.path.exists(path):
+        # Clean up previous output files
+        for pattern in ["output/*.jpg", "output/result.xlsx"]:
+            for path in glob.glob(pattern):
                 if os.path.isfile(path):
                     os.remove(path)
-                else:
-                    shutil.rmtree(path)
 
     def open_url(self, url):
         # Open a browser and navigate to the specified URL
@@ -41,12 +39,13 @@ class Scrapping:
             for category in categories:
                 try:
                     category_list += f"{category}, "
+                    sleep(3)
                     self.driver.click_element_when_clickable(Xpaths.NewsPage.SPAN_SHOW_CATEGORIES)
                     self.driver.click_element_when_clickable(f"xpath://span[text()='{category}']/preceding::input[1]")
                 except Exception as e:
                     print(f"Error while selecting '{category}' topic. \nError: {e}")
 
-            category_list = category_list[:-3]
+            category_list = category_list[:-2]
             print(f"Topics: {category_list}")
         else:
             print("Any categories selected.")

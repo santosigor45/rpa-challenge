@@ -23,7 +23,7 @@ def subtract_months(date, months):
 
 def download_image(url, img_name):
     # Downloads an image from a URL and saves it to a local folder
-    images_folder = "output/images"
+    images_folder = "output"
     if not os.path.exists(images_folder):
         os.makedirs(images_folder)
 

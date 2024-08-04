@@ -1,14 +1,15 @@
-from robocorp import storage
+from RPA.Robocorp.WorkItems import WorkItems
 
 
 class Variables:
     URL = "https://www.latimes.com/"
 
-    SEARCH_PHRASE = storage.get_text("SEARCH_PHRASE")
-    # SEARCH_PHRASE = "Brazil"
+    library = WorkItems()
+    library.get_input_work_item()
+    variables = library.get_work_item_variables()
 
-    MONTHS = int(storage.get_text("MONTHS"))
-    # MONTHS = 2
+    SEARCH_PHRASE = variables["SEARCH_PHRASE"]
 
-    CATEGORIES = storage.get_text("CATEGORY").split(", ")
-    # CATEGORIES = ["Soccer", "Sports"]
+    MONTHS = int(variables["MONTHS"])
+
+    CATEGORIES = variables["CATEGORIES"].split(", ")
