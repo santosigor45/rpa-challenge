@@ -1,4 +1,4 @@
-# Web Scraping Automation - RPA Challenge
+# Los Angeles Times - RPA Challenge
 
 This project automates the process of web scraping to retrieve news articles based on specific search criteria. It uses the RPA Framework for browser automation, and it processes the results to generate a report in Excel format.
 
